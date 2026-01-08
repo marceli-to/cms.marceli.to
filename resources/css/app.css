@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@import "./fonts.css";
+@import "./spacing.css";
+
+@theme {
+  --font-sans: 'Routine', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+  :root {
+    --grid-columns: 12;
+    --grid-gap: 0rem;
+    --col-width: calc((100% - (11 * var(--grid-gap))) / var(--grid-columns));
+  }
+}
+
+@layer utilities {
+  .w-col-3 {
+    width: calc(var(--col-width) * 3 + var(--grid-gap) * 2) !important;
+  }
+
+  .pl-col-1 {
+    padding-left: calc(var(--col-width) + var(--grid-gap));
+  }
+}
+
+strong {
+  @apply font-semibold;
+}
+

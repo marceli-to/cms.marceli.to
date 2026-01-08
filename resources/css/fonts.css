@@ -1,0 +1,31 @@
+/**
+ * Webfont Routine
+ * Usage:
+ * - Book → font-light
+ * - Regular → font-normal
+ * - Semibold → font-semibold
+ */
+
+@font-face {
+  font-family: 'Routine';
+  src: url('../fonts/Routine-Book.woff2') format('woff2'), url('../fonts/Routine-Book.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Routine';
+  src: url('../fonts/Routine-Regular.woff2') format('woff2'), url('../fonts/Routine-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Routine';
+  src: url('../fonts/Routine-Semibold.woff2') format('woff2'), url('../fonts/Routine-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

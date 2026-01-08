@@ -1,0 +1,5 @@
+# SSH
+ssh wbgch18@wbg.ch
+
+# GITHUB
+https://github.com/marceli-to/weberbrunner.ch.git
