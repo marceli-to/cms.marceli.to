@@ -22,14 +22,14 @@
 
       @foreach($projects as $project)
         <div 
-            wire:key="project-{{ $project['slug'] }}"
-            class="masonry-item"
-            x-ref="item">
-            <x-cards.project-teaser
-              :title="$project['title']"
-              :image="$project['image']"
-              :slug="$project['slug']"
-              variant="sm" />
+          wire:key="project-{{ $project['slug'] }}"
+          class="masonry-item"
+          x-ref="item">
+          <x-cards.project-teaser
+            :title="$project['title']"
+            :image="$project['image']"
+            :slug="$project['slug']"
+            variant="sm" />
         </div>
       @endforeach
 
