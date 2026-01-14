@@ -3,7 +3,7 @@
 
 <x-layout.inner title="Büro">
   
-  <x-icons.logo.symbol class="w-full h-auto max-w-[60%] lg:max-w-480 rotate-90 mb-30 md:mb-50 lg:mb-70" />
+  <x-icons.logo.symbol size="lg" class="w-full h-auto max-w-[60%] lg:max-w-480 rotate-90 mb-30 md:mb-50 lg:mb-70" />
   
   <x-headings.section class="mb-6 md:mb-8 lg:mb-10">
     Büro

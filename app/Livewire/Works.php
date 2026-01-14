@@ -99,8 +99,23 @@ class Works extends Component
             $filtered = $filtered->filter(fn($p) => $p['publication'] === true);
         }
 
+        // Split into columns for different breakpoints
+        $items = $filtered->values();
+        $columns2 = [[], []];
+        $columns3 = [[], [], []];
+        $columns4 = [[], [], [], []];
+        
+        foreach ($items as $index => $project) {
+            $columns2[$index % 2][] = $project;
+            $columns3[$index % 3][] = $project;
+            $columns4[$index % 4][] = $project;
+        }
+
         return view('livewire.works', [
-            'projects' => $filtered->values(),
+            'projects' => $items,
+            'columns2' => $columns2,
+            'columns3' => $columns3,
+            'columns4' => $columns4,
             'availableTypes' => [
                 'oeffentliche-gebaeude' => 'Öffentliche Gebäude',
                 'wohnungsbau' => 'Wohnungsbau',

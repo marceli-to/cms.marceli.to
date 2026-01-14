@@ -7,7 +7,7 @@
 ])
 @php
   $isSmall = $variant === 'sm' ? true : false;
-  $wrapperClass = $isSmall ? 'p-10 md:pb-15 lg:p-20 border-r' : 'p-20 md:pb-30';
+  $wrapperClass = $isSmall ? 'p-20 md:pb-15 lg:p-20' : 'p-20 md:pb-30';
   $titleClass = $isSmall ? 'text-xs md:text-sm' : 'text-md md:text-lg lg:text-xl';
 @endphp
 <a 
