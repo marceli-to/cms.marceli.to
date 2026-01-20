@@ -1,0 +1,44 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-CxCyO2oR.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/fonts/Routine-Book.woff": {
+    "file": "assets/Routine-Book-BNOGh8z4.woff",
+    "src": "resources/fonts/Routine-Book.woff"
+  },
+  "resources/fonts/Routine-Book.woff2": {
+    "file": "assets/Routine-Book-CPeqd7l6.woff2",
+    "src": "resources/fonts/Routine-Book.woff2"
+  },
+  "resources/fonts/Routine-Regular.woff": {
+    "file": "assets/Routine-Regular-DeRzt1oq.woff",
+    "src": "resources/fonts/Routine-Regular.woff"
+  },
+  "resources/fonts/Routine-Regular.woff2": {
+    "file": "assets/Routine-Regular-C7f5m7Gb.woff2",
+    "src": "resources/fonts/Routine-Regular.woff2"
+  },
+  "resources/fonts/Routine-Semibold.woff": {
+    "file": "assets/Routine-Semibold-Drd267j1.woff",
+    "src": "resources/fonts/Routine-Semibold.woff"
+  },
+  "resources/fonts/Routine-Semibold.woff2": {
+    "file": "assets/Routine-Semibold-CGlOAsHt.woff2",
+    "src": "resources/fonts/Routine-Semibold.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BdfBUTO3.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-CVuONdbL.css"
+    ]
+  }
+}
