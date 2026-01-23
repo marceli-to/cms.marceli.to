@@ -5,9 +5,9 @@
     class="md:hidden fixed left-1/2 -translate-x-1/2 top-25 z-40" 
     :hasActiveFilters="$hasActiveFilters" />
 
-  <div class="md:col-span-3 lg:col-span-4">
+  <div class="md:col-span-3 lg:col-span-4 w-full">
     <x-menu.filter.wrapper 
-      class="bg-white px-20 py-20 md:pr-0 md:pl-20 lg:pl-40 w-full h-full max-h-dvh fixed left-0 top-0 z-50 md:!block md:sticky md:top-14 lg:top-40 md:h-auto md:bg-transparent md:w-auto md:py-0"
+      class="bg-white px-20 py-20 md:pr-0 md:pl-20 lg:pl-40 w-[75vw] h-full max-h-dvh fixed left-0 top-0 z-50 md:!block md:sticky md:top-14 lg:top-40 md:h-auto md:bg-transparent md:w-auto md:py-0"
       :types="$types"
       :status="$status"
       :locations="$locations"
