@@ -10,7 +10,7 @@
 
   <div class="w-full flex-1 {{ $containerClass ?? ''}}">
     
-    <x-menu.page.wrapper class="bg-white px-20 py-20 w-full h-full max-h-dvh fixed left-0 top-0 z-50 md:!hidden" />
+    <x-menu.page.wrapper class="bg-red-100 px-20 py-20 w-full h-full max-h-dvh fixed left-0 top-0 z-50 md:!hidden" />
     <x-menu.buttons.hide class="w-24 h-auto fixed top-25 right-25 z-50 md:hidden" />
 
     <x-layout.partials.header class="flex px-20 py-20 md:hidden relative {{ $headerClass ?? '' }}">
