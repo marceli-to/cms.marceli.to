@@ -2,11 +2,20 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
+use App\Models\Project;
+use App\Models\Status;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Works extends Component
 {
+    #[Url]
+    public string $query = '';
+
     #[Url]
     public array $types = [];
 
@@ -19,126 +28,164 @@ class Works extends Component
     #[Url]
     public bool $publications = false;
 
-    public function toggleType($type)
+    public function clearSearch(): void
     {
-        if (in_array($type, $this->types)) {
-            $this->types = array_values(array_diff($this->types, [$type]));
-        } else {
-            $this->types[] = $type;
-        }
+        $this->query = '';
     }
 
-    public function toggleStatus($status)
+    public function toggleType(string $type): void
     {
-        if (in_array($status, $this->status)) {
-            $this->status = array_values(array_diff($this->status, [$status]));
-        } else {
-            $this->status[] = $status;
-        }
+        $this->types = $this->toggleArrayValue($this->types, $type);
     }
 
-    public function toggleLocation($location)
+    public function toggleStatus(string $status): void
     {
-        if (in_array($location, $this->locations)) {
-            $this->locations = array_values(array_diff($this->locations, [$location]));
-        } else {
-            $this->locations[] = $location;
-        }
+        $this->status = $this->toggleArrayValue($this->status, $status);
     }
 
-    public function togglePublications()
+    public function toggleLocation(string $location): void
+    {
+        $this->locations = $this->toggleArrayValue($this->locations, $location);
+    }
+
+    public function togglePublications(): void
     {
         $this->publications = !$this->publications;
     }
 
-    public function clearFilters()
+    public function clearFilters(): void
     {
+        $this->query = '';
         $this->types = [];
         $this->status = [];
         $this->locations = [];
         $this->publications = false;
     }
 
+    #[Computed]
+    public function hasActiveFilters(): bool
+    {
+        return !empty($this->query)
+            || !empty($this->types)
+            || !empty($this->status)
+            || !empty($this->locations)
+            || $this->publications;
+    }
+
+    #[Computed]
+    public function availableTypes(): array
+    {
+        return Category::pluck('title', 'slug')->toArray();
+    }
+
+    #[Computed]
+    public function availableStatus(): array
+    {
+        return Status::pluck('title', 'slug')->toArray();
+    }
+
+    #[Computed]
+    public function availableLocations(): array
+    {
+        return [
+            'zurich' => 'Zürich',
+            'berlin' => 'Berlin',
+        ];
+    }
+
     public function render()
     {
-        // Dummy project data
-        $projects = collect([
-            ['title' => 'Recyclingzentrum Juch-Areal, Zürich', 'slug' => 'recyclingzentrum-juch-areal', 'image' => 'images/dummy-teaser-1.jpg', 'type' => 'oeffentliche-gebaeude', 'status' => 'realisiert', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Wohnhaus H. Weiningen', 'slug' => 'wohnhaus-h-weiningen', 'image' => 'images/dummy-teaser-2.jpg', 'type' => 'wohnungsbau', 'status' => 'realisiert', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Lokstadt, Winterthur', 'slug' => 'lokstadt-winterthur', 'image' => 'images/dummy-teaser-3.jpg', 'type' => 'wohnungsbau', 'status' => 'in-bearbeitung', 'location' => 'zuerich', 'publication' => true],
-            ['title' => 'Stadtraum Bahnhof, Langenthal', 'slug' => 'stadtraum-bahnhof-langenthal', 'image' => 'images/dummy-teaser-4.jpg', 'type' => 'oeffentliche-gebaeude', 'status' => 'projekte', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Puschkinallee', 'slug' => 'puschkinallee', 'image' => 'images/dummy-teaser-5.jpg', 'type' => 'wohnungsbau', 'status' => 'realisiert', 'location' => 'berlin', 'publication' => false],
-            ['title' => 'Spinnerei III, Windisch', 'slug' => 'spinnerei-iii-windisch', 'image' => 'images/dummy-teaser-6.jpg', 'type' => 'bauen-im-bestand', 'status' => 'realisiert', 'location' => 'zuerich', 'publication' => true],
-            ['title' => 'Bergacker, Zürich-Affoltern', 'slug' => 'bergacker-zuerich-affoltern', 'image' => 'images/dummy-teaser-7.jpg', 'type' => 'wohnungsbau', 'status' => 'in-bearbeitung', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Hagmannareal, Winterthur', 'slug' => 'hagmannareal-winterthur', 'image' => 'images/dummy-teaser-8.jpg', 'type' => 'wohnungsbau', 'status' => 'projekte', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Recyclingzentrum Juch-Areal', 'slug' => 'recyclingzentrum-juch-areal-2', 'image' => 'images/dummy-teaser-9.jpg', 'type' => 'zirkulaeres-bauen', 'status' => 'realisiert', 'location' => 'zuerich', 'publication' => true],
-            ['title' => 'Stadtraum Bahnhof, Langenthal', 'slug' => 'stadtraum-bahnhof-langenthal-2', 'image' => 'images/dummy-teaser-10.jpg', 'type' => 'oeffentliche-gebaeude', 'status' => 'in-bearbeitung', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Wohnhaus H. Weiningen', 'slug' => 'wohnhaus-h-weiningen-2', 'image' => 'images/dummy-teaser-11.jpg', 'type' => 'wohnungsbau', 'status' => 'realisiert', 'location' => 'zuerich', 'publication' => false],
-            ['title' => 'Lokstadt, Winterthur', 'slug' => 'lokstadt-winterthur-2', 'image' => 'images/dummy-teaser-12.jpg', 'type' => 'zustandsanalyse', 'status' => 'projekte', 'location' => 'zuerich', 'publication' => false],
-        ]);
-
-        $filtered = $projects;
-
-        // Filter by types (multi-select AND logic)
-        if (!empty($this->types)) {
-            $filtered = $filtered->filter(fn($p) => !in_array($p['type'], $this->types));
-        }
-
-        // Filter by status (multi-select AND logic)
-        if (!empty($this->status)) {
-            $filtered = $filtered->filter(fn($p) => !in_array($p['status'], $this->status));
-        }
-
-        // Filter by locations (multi-select AND logic)
-        if (!empty($this->locations)) {
-            $filtered = $filtered->filter(fn($p) => !in_array($p['location'], $this->locations));
-        }
-
-        // Filter by publications
-        if ($this->publications) {
-            $filtered = $filtered->filter(fn($p) => $p['publication'] === true);
-        }
-
-        // Split into columns for different breakpoints
-        $items = $filtered->values();
-        $columns2 = [[], []];
-        $columns3 = [[], [], []];
-        $columns4 = [[], [], [], []];
-        
-        foreach ($items as $index => $project) {
-            $columns2[$index % 2][] = $project;
-            $columns3[$index % 3][] = $project;
-            $columns4[$index % 4][] = $project;
-        }
-
-        $hasActiveFilters = !empty($this->types) 
-            || !empty($this->status) 
-            || !empty($this->locations) 
-            || $this->publications;
+        $projects = $this->getProjects();
 
         return view('livewire.works', [
-            'projects' => $items,
-            'columns2' => $columns2,
-            'columns3' => $columns3,
-            'columns4' => $columns4,
-            'hasActiveFilters' => $hasActiveFilters,
-            'availableTypes' => [
-                'oeffentliche-gebaeude' => 'Öffentliche Gebäude',
-                'wohnungsbau' => 'Wohnungsbau',
-                'bauen-im-bestand' => 'Bauen im Bestand',
-                'zustandsanalyse' => 'Zustandsanalyse',
-                'zirkulaeres-bauen' => 'Zirkuläres Bauen',
-                'lca' => 'LCA',
-            ],
-            'availableStatus' => [
-                'projekte' => 'Projekte',
-                'in-bearbeitung' => 'In Bearbeitung',
-                'realisiert' => 'Realisiert',
-            ],
-            'availableLocations' => [
-                'zuerich' => 'Zürich',
-                'berlin' => 'Berlin',
-            ],
+            'projects' => $projects,
+            'columns2' => $this->splitIntoColumns($projects, 2),
+            'columns3' => $this->splitIntoColumns($projects, 3),
+            'columns4' => $this->splitIntoColumns($projects, 4),
+            'resultCount' => $projects->count(),
         ]);
+    }
+
+    protected function getProjects(): Collection
+    {
+        return $this->buildQuery()
+            ->get()
+            ->map(fn (Project $project) => [
+                'title' => $project->title,
+                'slug' => $project->slug,
+                'image' => $project->media->first()?->file ?? 'images/dummy-teaser-1.jpg',
+            ]);
+    }
+
+    protected function buildQuery(): Builder
+    {
+        $query = Project::query()
+            ->with(['media' => fn ($q) => $q->where('is_teaser', true)]);
+
+        $this->applySearch($query);
+        $this->applyFilters($query);
+
+        if (empty($this->query)) {
+            $query->latest();
+        }
+
+        return $query;
+    }
+
+    protected function applySearch(Builder $query): void
+    {
+        if (empty($this->query)) {
+            return;
+        }
+
+        $likeTerm = '%' . trim($this->query) . '%';
+
+        $query->where(fn ($q) => $q
+            ->where('title', 'LIKE', $likeTerm)
+            ->orWhere('description', 'LIKE', $likeTerm)
+        );
+
+        $query->orderByRaw("CASE WHEN title LIKE ? THEN 0 ELSE 1 END", [$likeTerm])
+              ->orderBy('created_at', 'desc');
+    }
+
+    protected function applyFilters(Builder $query): void
+    {
+        if (!empty($this->types)) {
+            $query->whereDoesntHave('categories', fn ($q) => $q->whereIn('slug', $this->types));
+        }
+
+        if (!empty($this->status)) {
+            $query->whereDoesntHave('statuses', fn ($q) => $q->whereIn('slug', $this->status));
+        }
+
+        if (!empty($this->locations)) {
+            $query->whereNotIn('location', $this->locations);
+        }
+
+        if ($this->publications) {
+            $query->where('publish', true);
+        }
+    }
+
+    protected function splitIntoColumns(Collection $items, int $count): array
+    {
+        $columns = array_fill(0, $count, []);
+
+        foreach ($items->values() as $index => $item) {
+            $columns[$index % $count][] = $item;
+        }
+
+        return $columns;
+    }
+
+    protected function toggleArrayValue(array $array, string $value): array
+    {
+        if (in_array($value, $array)) {
+            return array_values(array_diff($array, [$value]));
+        }
+
+        $array[] = $value;
+        return $array;
     }
 }

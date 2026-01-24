@@ -1,20 +1,22 @@
 <div class="md:grid md:grid-cols-12 w-full">
 
-  <x-menu.buttons.filter 
-    wire:key="filter-btn-{{ $hasActiveFilters ? 'active' : 'inactive' }}"
-    class="md:hidden fixed left-1/2 -translate-x-1/2 top-25 z-40" 
-    :hasActiveFilters="$hasActiveFilters" />
+  <x-menu.buttons.filter
+    wire:key="filter-btn-{{ $this->hasActiveFilters ? 'active' : 'inactive' }}"
+    class="md:hidden fixed left-1/2 -translate-x-1/2 top-25 z-40"
+    :hasActiveFilters="$this->hasActiveFilters" />
 
   <div class="md:col-span-3 lg:col-span-4">
-    <x-menu.filter.wrapper 
+    <x-menu.filter.wrapper
       class="bg-white px-20 py-20 md:pr-0 md:pl-20 lg:pl-40 w-full h-full max-h-dvh fixed left-0 top-0 z-50 md:!block md:sticky md:top-14 lg:top-40 md:h-auto md:bg-transparent md:w-auto md:py-0"
+      :query="$query"
       :types="$types"
       :status="$status"
       :locations="$locations"
       :publications="$publications"
-      :availableTypes="$availableTypes"
-      :availableStatus="$availableStatus"
-      :availableLocations="$availableLocations" />
+      :availableTypes="$this->availableTypes"
+      :availableStatus="$this->availableStatus"
+      :availableLocations="$this->availableLocations"
+      :resultCount="$resultCount" />
   </div>
 
   <div class="md:min-h-(--content-full-height-md) lg:min-h-(--content-full-height-lg) md:col-span-9 lg:col-span-8 md:border-l md:border-black overflow-x-hidden">

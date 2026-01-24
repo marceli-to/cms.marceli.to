@@ -1,5 +1,6 @@
 @props([
   'class' => null,
+  'query' => '',
   'types' => [],
   'status' => [],
   'locations' => [],
@@ -7,6 +8,7 @@
   'availableTypes' => [],
   'availableStatus' => [],
   'availableLocations' => [],
+  'resultCount' => 0,
 ])
 
 <div
@@ -74,7 +76,34 @@
             action="toggleLocation('{{ $key }}')" />
         @endforeach
       </ul>
-      
+
+      {{-- Search input --}}
+      <div class="flex flex-col gap-y-8 lg:pr-40 max-w-400">
+        <div class="relative">
+          <input
+            type="text"
+            wire:model.live.debounce.300ms="query"
+            placeholder="Suche"
+            class="w-full border-b border-black py-8 text-sm font-semibold text-black placeholder:text-black placeholder:font-semibold focus:outline-none"
+            @keydown.escape="$wire.clearSearch()" />
+          @if(!empty($query))
+            <button
+              wire:click="clearSearch"
+              class="absolute right-0 top-1/2 -translate-y-1/2 p-4 hover:opacity-60"
+              title="Suche löschen">
+              <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          @endif
+        </div>
+        @if(!empty($query))
+          <div class="text-sm">
+            {{ $resultCount }} {{ $resultCount === 1 ? 'Projekt' : 'Projekte' }}
+          </div>
+        @endif
+      </div>
+
     </div>
 
     <a 

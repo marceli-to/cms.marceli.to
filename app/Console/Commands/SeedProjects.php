@@ -1,0 +1,208 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\Category;
+use App\Models\Project;
+use App\Models\Status;
+use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+class SeedProjects extends Command
+{
+    protected $signature = 'app:seed-projects';
+
+    protected $description = 'Seed categories, statuses, and 50 dummy projects';
+
+    private array $categories = [
+        'oeffentliche-gebaeude' => 'Öffentliche Gebäude',
+        'wohnungsbau' => 'Wohnungsbau',
+        'bauen-im-bestand' => 'Bauen im Bestand',
+        'zustandsanalyse' => 'Zustandsanalyse',
+        'zirkulaeres-bauen' => 'Zirkuläres Bauen',
+        'lca' => 'LCA',
+    ];
+
+    private array $statuses = [
+        'projekte' => 'Projekte',
+        'in-bearbeitung' => 'In Bearbeitung',
+        'realisiert' => 'Realisiert',
+    ];
+
+    private array $projectTitles = [
+        'Recyclingzentrum Juch-Areal',
+        'Wohnhaus H. Weiningen',
+        'Lokstadt',
+        'Stadtraum Bahnhof',
+        'Puschkinallee',
+        'Spinnerei III',
+        'Bergacker',
+        'Hagmannareal',
+        'Kulturzentrum Rote Fabrik',
+        'Genossenschaft Kalkbreite',
+        'Wohnüberbauung Sihlbogen',
+        'Schulhaus Leutschenbach',
+        'Hunziker Areal',
+        'Freilager',
+        'Zollhaus',
+        'Gewerbehaus Binz',
+    ];
+
+    private array $locations = [
+        'zurich' => ['Zürich', 'Winterthur', 'Zürich-Affoltern', 'Windisch', 'Langenthal', 'Dietikon', 'Baden', 'Uster'],
+        'berlin' => ['Berlin', 'Berlin-Mitte', 'Kreuzberg', 'Prenzlauer Berg', 'Friedrichshain', 'Charlottenburg'],
+    ];
+
+    private array $attributeLabels = [
+        'Auftraggeberin',
+        'Entwurf und Generalplanung LP 1-8',
+        'Projekt',
+        'Umsetzung',
+        'Budget',
+        'Auszeichnungen',
+        'Anzahl Wohnungen',
+        'Geschossfläche',
+        'Bauherrschaft',
+        'Landschaftsarchitektur',
+    ];
+
+    private array $attributeValues = [
+        'Auftraggeberin' => ['Fa. Bateg GmbH (GÜ) für die HOWOGE', 'Stadt Zürich', 'Baugenossenschaft Mehr als Wohnen', 'Allgemeine Baugenossenschaft Zürich', 'Stiftung PWG'],
+        'Entwurf und Generalplanung LP 1-8' => ['ZOOMARCHITEKTEN', 'weberbrunner architekten', 'EM2N', 'Gigon/Guyer', 'Caruso St John'],
+        'Projekt' => ['Neubau', 'Umbau', 'Sanierung', 'Erweiterung', 'Aufstockung'],
+        'Umsetzung' => ['2020', '2021', '2022', '2023', '2024', '2025'],
+        'Budget' => ['1.2 Mio.', '2.5 Mio.', '4.8 Mio.', '12 Mio.', '25 Mio.', '48 Mio.'],
+        'Auszeichnungen' => ['Architekturpreis 2024', 'Gute Bauten 2023 (1. Platz)', 'best architect 19, gold award', 'AW20 Architekturpreis Region Winterthur'],
+        'Anzahl Wohnungen' => ['12 Wohnungen', '24 Wohnungen', '48 Wohnungen', '63 teilweise geförderte Wohnungen', '120 Wohnungen'],
+        'Geschossfläche' => ['1\'200 m²', '3\'500 m²', '8\'000 m²', '15\'000 m²', '25\'000 m²'],
+        'Bauherrschaft' => ['Privat', 'Öffentlich', 'Genossenschaft', 'Stiftung'],
+        'Landschaftsarchitektur' => ['Rotzler Krebs Partner', 'Westpol Landschaftsarchitektur', 'Studio Vulkan', 'Antón & Ghiggi'],
+    ];
+
+    public function handle(): void
+    {
+        $this->info('Seeding categories...');
+        $categories = $this->seedCategories();
+
+        $this->info('Seeding statuses...');
+        $statuses = $this->seedStatuses();
+
+        $this->info('Seeding 50 projects...');
+        $this->seedProjects($categories, $statuses);
+
+        $this->info('Done! Created 50 projects with attributes and media.');
+    }
+
+    private function seedCategories(): array
+    {
+        $result = [];
+        foreach ($this->categories as $slug => $title) {
+            $result[$slug] = Category::firstOrCreate(
+                ['slug' => $slug],
+                ['title' => $title]
+            );
+        }
+        return $result;
+    }
+
+    private function seedStatuses(): array
+    {
+        $result = [];
+        foreach ($this->statuses as $slug => $title) {
+            $result[$slug] = Status::firstOrCreate(
+                ['slug' => $slug],
+                ['title' => $title]
+            );
+        }
+        return $result;
+    }
+
+    private function seedProjects(array $categories, array $statuses): void
+    {
+        $teaserImages = range(1, 13);
+        $projectImages = range(1, 5);
+
+        for ($i = 1; $i <= 50; $i++) {
+            $title = $this->projectTitles[array_rand($this->projectTitles)];
+            $locationKey = array_rand($this->locations);
+            $locationName = $this->locations[$locationKey][array_rand($this->locations[$locationKey])];
+            $fullTitle = "{$title}, {$locationName}";
+
+            $slug = Str::slug($fullTitle) . '-' . $i;
+
+            $project = Project::create([
+                'title' => $fullTitle,
+                'slug' => $slug,
+                'description' => $this->generateDescription(),
+                'location' => $locationKey,
+                'publish' => rand(0, 1) === 1,
+            ]);
+
+            // Add 3-7 attributes
+            $numAttributes = rand(3, 7);
+            $selectedLabels = array_rand(array_flip($this->attributeLabels), $numAttributes);
+            if (!is_array($selectedLabels)) {
+                $selectedLabels = [$selectedLabels];
+            }
+
+            foreach ($selectedLabels as $order => $label) {
+                $values = $this->attributeValues[$label] ?? ['Muster'];
+                $project->attributes()->create([
+                    'label' => $label,
+                    'value' => $values[array_rand($values)],
+                    'sort_order' => $order,
+                ]);
+            }
+
+            // Add teaser image
+            $teaserNum = $teaserImages[array_rand($teaserImages)];
+            $project->media()->create([
+                'file' => "images/dummy-teaser-{$teaserNum}.jpg",
+                'alt' => $fullTitle,
+                'is_teaser' => true,
+                'sort_order' => 0,
+            ]);
+
+            // Add 3-8 project images
+            $numImages = rand(3, 8);
+            for ($j = 1; $j <= $numImages; $j++) {
+                $imgNum = $projectImages[array_rand($projectImages)];
+                $project->media()->create([
+                    'file' => "images/dummy-project-{$imgNum}.jpg",
+                    'alt' => "{$fullTitle} - Bild {$j}",
+                    'is_teaser' => false,
+                    'sort_order' => $j,
+                ]);
+            }
+
+            // Attach 1-3 categories
+            $numCategories = rand(1, 3);
+            $categoryKeys = array_rand($categories, $numCategories);
+            if (!is_array($categoryKeys)) {
+                $categoryKeys = [$categoryKeys];
+            }
+            foreach ($categoryKeys as $key) {
+                $project->categories()->attach($categories[$key]->id);
+            }
+
+            // Attach 1 status
+            $statusKey = array_rand($statuses);
+            $project->statuses()->attach($statuses[$statusKey]->id);
+
+            $this->line("  Created: {$fullTitle}");
+        }
+    }
+
+    private function generateDescription(): string
+    {
+        $paragraphs = [
+            'Das Projekt entstand aus einem Wettbewerb und überzeugt durch seine klare städtebauliche Setzung. Die Gebäude bilden einen Hofraum, der als gemeinschaftlicher Aussenraum dient und vielfältige Nutzungsmöglichkeiten bietet.',
+            'Die Architektur reagiert sensibel auf den Kontext und schafft einen Dialog zwischen Alt und Neu. Materialität und Farbgebung orientieren sich an der bestehenden Bebauung und interpretieren diese zeitgenössisch.',
+            'Nachhaltigkeit stand von Beginn an im Zentrum des Entwurfs. Das Gebäude erfüllt den Minergie-P-ECO-Standard und setzt auf erneuerbare Energien sowie eine ressourcenschonende Bauweise.',
+            'Die Wohnungen sind flexibel konzipiert und ermöglichen unterschiedliche Wohnformen. Grosszügige Gemeinschaftsräume und geteilte Infrastrukturen fördern das nachbarschaftliche Zusammenleben.',
+            'Der Entwurf schafft eine Balance zwischen Dichte und Freiraum. Die gestaffelte Volumetrie ermöglicht optimale Besonnung und Aussicht für alle Wohnungen.',
+        ];
+
+        return $paragraphs[array_rand($paragraphs)];
+    }
+}

@@ -1,13 +1,14 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProjectController;
 
 Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
 Route::view('/', 'pages.landing')->name('page.landing');
 
 Route::view('/arbeiten', 'pages.works.index')->name('page.works');
-Route::view('/arbeiten/{slug}', 'pages.works.show')->name('page.works.show');
+Route::get('/arbeiten/{slug}', [ProjectController::class, 'show'])->name('page.works.show');
 
 Route::view('/buero', 'pages.about.index')->name('page.about');
 Route::view('/buero/team', 'pages.about.team')->name('page.about.team');

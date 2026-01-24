@@ -1,67 +1,70 @@
-@section('meta_title', 'Wohnüberbauung Hagmannareal, Winterthur')
-@section('meta_description', '')
 @php
-$slides = [
-  ['src' => 'images/dummy-project-1.jpg'],
-  ['src' => 'images/dummy-project-2.jpg'],
-  ['src' => 'images/dummy-project-3.jpg'],
-  ['src' => 'images/dummy-project-4.jpg'],
-  ['src' => 'images/dummy-project-5.jpg'],
-];
+  // Split title into name and location if it contains a comma
+  $titleParts = explode(', ', $project->title, 2);
+  $projectName = $titleParts[0];
+  $projectLocation = $titleParts[1] ?? null;
 
-$projectInfo = [
-  ['label' => 'Auftraggeberin', 'value' => 'Fa. Bateg GmbH (GÜ) für die HOWOGE'],
-  ['label' => 'Entwurf und Generalplanung LP 1-8', 'value' => 'ZOOMARCHITEKTEN'],
-  ['label' => 'Projekt', 'value' => 'Muster'],
-  ['label' => 'Umsetzung', 'value' => '2025'],
-  ['label' => 'Budget', 'value' => '2.5 Mio.'],
-  ['label' => 'Auszeichnungen', 'value' => 'Architekturpreise 2025, Gute Bauten 2025 (1. Platz)'],
-  ['label' => 'Anzahl Wohnungen', 'value' => '63 teilweise geförderte wohnungen'],
-];
+  // Prepare slides from media (excluding teaser)
+  $slides = $project->media->where('is_teaser', false)->map(fn($m) => ['src' => $m->file])->values();
 
+  // Prepare project info from attributes
+  $projectInfo = $project->attributes->map(fn($attr) => [
+    'label' => $attr->label,
+    'value' => $attr->value,
+  ])->toArray();
+
+  // Get first category as header
+  $header = $project->categories->first()?->title ?? 'weberbrunner architekten';
 @endphp
 
-<x-layout.show title="Wohnüberbauung Hagmannareal" location="Winterthur">
+@section('meta_title', $project->title)
+@section('meta_description', Str::limit($project->description, 160))
 
-  <x-media.slideshow class="mb-20 lg:mb-40">
+<x-layout.show :title="$projectName" :location="$projectLocation">
 
-    <x-slot:info>
-      <x-work.info
-        :items="$projectInfo"
-        header="weberbrunner pischetsrieder architektur, Berlin"
-        :isSlideshow="true"
-      />
-    </x-slot:info>
+  @if($slides->isNotEmpty())
+    <x-media.slideshow class="mb-20 lg:mb-40">
 
-    @foreach($slides as $slide)
-      <div class="swiper-slide !w-auto flex justify-center items-center">
-        <x-media.image
-          :src="$slide['src']"
-          alt=""
-          class="h-(--slideshow-item-height) md:h-(--slideshow-item-height-md) xl:h-(--slideshow-item-height-xl) w-auto"
+      <x-slot:info>
+        <x-work.info
+          :items="$projectInfo"
+          :header="$header"
+          :isSlideshow="true"
         />
-      </div>
-    @endforeach
+      </x-slot:info>
 
-  </x-media.slideshow>
+      @foreach($slides as $slide)
+        <div class="swiper-slide !w-auto flex justify-center items-center">
+          <x-media.image
+            :src="$slide['src']"
+            alt=""
+            class="h-(--slideshow-item-height) md:h-(--slideshow-item-height-md) xl:h-(--slideshow-item-height-xl) w-auto"
+          />
+        </div>
+      @endforeach
 
-  <x-work.description>
-    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </x-work.description>
+    </x-media.slideshow>
+  @endif
 
-    <div class="md:hidden mb-40">
-      <x-work.info
-        :items="$projectInfo"
-        header="weberbrunner pischetsrieder architektur, Berlin"
-      />    
-    </div>
+  @if($project->description)
+    <x-work.description>
+      <p>{{ $project->description }}</p>
+    </x-work.description>
+  @endif
+
+  <div class="md:hidden mb-40">
+    <x-work.info
+      :items="$projectInfo"
+      :header="$header"
+    />
+  </div>
 
   <x-work.section title="Grundrisse" />
   <x-media.slideshow class="mb-40 lg:mb-80">
     <x-slot:info>
       &nbsp;
     </x-slot:info>
-    @foreach($slides as $slide)
+    @foreach($slides->take(3) as $slide)
       <div class="swiper-slide !w-auto flex justify-center items-center">
         <x-media.image
           :src="$slide['src']"
@@ -83,12 +86,6 @@ $projectInfo = [
         </x-links.cta>
         <x-links.cta href="#" target="_blank" label="werk, bauen+wohnen 10-2018, Dorfbau">
           werk, bauen+wohnen 10-2018, Dorfbau
-        </x-links.cta>
-        <x-links.cta href="#" target="_blank" label="best architect 19, gold award">
-          best architect 19, gold award
-        </x-links.cta>
-        <x-links.cta href="#" target="_blank" label="BauNetz">
-          BauNetz
         </x-links.cta>
       </div>
     </x-container.inner>
