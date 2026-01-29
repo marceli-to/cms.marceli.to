@@ -21,7 +21,7 @@
   x-transition:leave="transition ease-in duration-0"
   x-transition:leave-start="opacity-100"
   x-transition:leave-end="opacity-0"
-  class="{{ $class ?? ''}}">
+  class="{{ $class ?? ''}} flex flex-col justify-between">
 
   <nav class="flex flex-col justify-between gap-y-60">
     
@@ -84,7 +84,7 @@
             type="text"
             wire:model.live.debounce.300ms="query"
             placeholder="Suche"
-            class="w-full border-b border-black py-8 text-sm font-semibold text-black placeholder:text-black placeholder:font-semibold focus:outline-none"
+            class="w-full border-b border-black pb-6 md:pb-8 lg:pb-10 text-sm font-semibold text-md md:text-lg lg:text-xl text-black placeholder:text-md md:placeholder:text-lg lg:placeholder:text-xl placeholder:text-black placeholder:font-semibold focus:outline-none"
             @keydown.escape="$wire.clearSearch()" />
           @if(!empty($query))
             <button
@@ -114,5 +114,9 @@
     </a>
 
   </nav>
+
+  <button @click="filter = false" class="flex justify-end mb-20">
+    <x-icons.arrow-right size="lg" class="w-28 h-auto" />
+  </button>
 
 </div>

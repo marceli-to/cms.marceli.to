@@ -7,9 +7,9 @@
   headerClass="pl-20"
   mainClass="!pb-0 relative">
 
-  <div class="md:min-h-(--content-height-md) lg:min-h-(--content-height-lg) border-t md:border-l border-black">
+  <div class="md:min-h-(--content-height-md) lg:min-h-(--content-height-lg) md:border-l border-black">
 
-    <div class="md:grid md:grid-cols-9 pb-20 lg:pb-40 bg-yellow-100">
+    <div class="md:grid md:grid-cols-9 pb-20 lg:pb-40 border-t border-black">
 
       <div class="md:col-span-3 p-20 pb-25">
         <x-media.image

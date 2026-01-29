@@ -46,7 +46,7 @@
     /* Footer heights */
     --footer-height: 9.6875rem;    /* 155px */
     --footer-height-md: 10.625rem; /* 170px */
-    --footer-height-lg: 6.875rem;  /* 110px */
+    --footer-height-lg: 7rem;  /* 112px */
 
     /* Content heights */
     --content-height: calc(100dvh - var(--header-height) - var(--footer-height));
