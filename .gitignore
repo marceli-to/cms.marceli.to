@@ -19,6 +19,7 @@
 /storage/app/.glide-cache
 /storage/pail
 /vendor
+/.tasks
 Homestead.json
 Homestead.yaml
 Thumbs.db
