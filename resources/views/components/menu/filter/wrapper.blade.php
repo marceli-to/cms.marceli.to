@@ -115,7 +115,7 @@
 
   </nav>
 
-  <button @click="filter = false" class="flex justify-end mb-20">
+  <button @click="filter = false" class="flex justify-end mb-20 md:hidden">
     <x-icons.arrow-right size="lg" class="w-28 h-auto" />
   </button>
 
