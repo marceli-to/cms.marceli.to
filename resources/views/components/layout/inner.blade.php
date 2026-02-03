@@ -18,7 +18,7 @@
 
     <div class="md:col-span-9 {{ $contentClass ?? '' }}">
 
-      <x-layout.partials.header class="min-h-(--header-height) md:min-h-(--header-height-md) lg:min-h-(--header-height-lg) flex flex-col md:grid md:grid-cols-9 gap-y-30 md:gap-y-0 py-20 lg:pt-40 md:px-20 lg:px-0 -mt-6 lg:-mt-8 xl:-mt-10 {{ $headerClass ?? '' }}">
+      <x-layout.partials.header class="min-h-(--header-height) md:min-h-(--header-height-md) lg:min-h-(--header-height-lg) flex flex-col md:grid md:grid-cols-9 gap-y-30 md:gap-y-0 py-20 lg:pt-40 -mt-6 lg:-mt-8 xl:-mt-10 {{ $headerClass ?? '' }}">
         
         @if ($title)
           <h1 class="md:hidden font-semibold text-3xl">
@@ -28,8 +28,12 @@
 
         <x-menu.buttons.show class="md:hidden w-32 h-auto fixed top-25 right-20 z-50" />
 
-        <x-icons.logo.wa class="hidden md:block md:col-span-3 md:col-start-3 lg:col-start-4 w-full h-auto xs:max-w-248 lg:max-w-400 lg:pr-40" />
-        <x-icons.logo.wpa class="hidden md:block md:col-span-3 w-full h-auto xs:max-w-248 lg:max-w-400 lg:pr-40" />
+        <div class="hidden md:flex md:col-start-3 md:col-span-7 lg:col-start-4 lg:col-span-6">
+          <div class="grid grid-cols-6 lg:w-full">
+            <x-icons.logo.wa class="col-span-3 w-full h-auto xs:max-w-248 lg:max-w-400 md:pr-20 lg:pr-40" />
+            <x-icons.logo.wpa class="col-span-3 col-start-4 w-full h-auto xs:max-w-248 lg:max-w-400 md:pr-20 lg:pr-40" />
+          </div>
+        </div>
 
       </x-layout.partials.header>
 
