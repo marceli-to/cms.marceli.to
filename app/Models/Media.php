@@ -11,6 +11,8 @@ class Media extends Model
         'file',
         'alt',
         'caption',
+        'width',
+        'height',
         'is_teaser',
         'sort_order',
     ];
@@ -22,5 +24,19 @@ class Media extends Model
     public function mediable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function getOrientationAttribute(): string
+    {
+        if (!$this->width || !$this->height) {
+            return 'unknown';
+        }
+        if ($this->width > $this->height) {
+            return 'landscape';
+        }
+        if ($this->height > $this->width) {
+            return 'portrait';
+        }
+        return 'square';
     }
 }

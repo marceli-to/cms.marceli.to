@@ -2,8 +2,9 @@
 @section('meta_description', '')
 
 <x-layout.inner
-  title="{{ $member['firstname'] }} {{ $member['name'] }}"
+  title="Team"
   containerClass="!pl-0"
+  headerClass="pl-20 md:pl-0"
   mainClass="!pb-0 relative">
 
   <div class="md:min-h-(--content-height-md) lg:min-h-(--content-height-lg) md:border-l border-black">
@@ -27,7 +28,7 @@
 
       <div class="md:col-span-6 md:pt-20 px-20 md:pl-0">
         <div class="font-semibold text-xs md:text-lg lg:text-xl flex flex-col  mb-20 lg:mb-40">
-          <x-headings.h2 class="hidden md:block">
+          <x-headings.h2 class="">
             {{ $member['firstname'] }} {{ $member['name'] }}
           </x-headings.h2>
           @if($member['title'])

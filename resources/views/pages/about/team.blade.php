@@ -4,6 +4,7 @@
 <x-layout.inner
   title="Team"
   containerClass="!pl-0"
+  headerClass="pl-20 md:pl-0"
   mainClass="!pb-0 relative">
 
   <livewire:team />

@@ -110,11 +110,15 @@ class Works extends Component
     {
         return $this->buildQuery()
             ->get()
-            ->map(fn (Project $project) => [
-                'title' => $project->title,
-                'slug' => $project->slug,
-                'image' => $project->media->first()?->file ?? 'images/dummy-teaser-1.jpg',
-            ]);
+            ->map(function (Project $project) {
+                $media = $project->media->first();
+                return [
+                    'title' => $project->title,
+                    'slug' => $project->slug,
+                    'image' => $media?->file ?? 'images/dummy-teaser-1.jpg',
+                    'orientation' => $media?->orientation ?? 'unknown',
+                ];
+            });
     }
 
     protected function buildQuery(): Builder

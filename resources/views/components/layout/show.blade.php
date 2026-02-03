@@ -18,7 +18,7 @@
 
     <div class="md:col-span-9 md:col-start-4">
 
-      <x-headings.h1 class="font-semibold leading-[1.15] text-lg md:text-2xl lg:text-5xl">
+      <x-headings.h1 class="font-semibold leading-[1.15] text-xl md:text-2xl lg:text-5xl">
 
         {{ $title }}
 
