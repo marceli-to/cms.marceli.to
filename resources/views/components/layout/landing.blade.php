@@ -5,7 +5,7 @@
   <x-layout.partials.header class="px-20 md:px-0">
     
     <div class="flex flex-col md:flex-row justify-between md:items-start py-20 md:pb-0 lg:pt-40 min-h-[70vh] md:min-h-auto md:grid md:grid-cols-12 w-full">
-      <div class="md:order-2 md:col-span-7 md:col-start-6 lg:col-start-7 flex justify-between">
+      <div class="md:order-2 md:col-span-7 md:col-start-6 lg:col-start-7 flex justify-between -mt-6 lg:-mt-8 xl:-mt-10">
         <div class="gap-y-30 grid grid-cols-6 lg:w-full">
           <x-icons.logo.wa class="w-full h-auto max-w-200 xs:max-w-248 lg:max-w-400 col-span-4 md:col-span-3 md:pr-20 lg:pr-40" />
           <x-icons.logo.wpa class="w-full h-auto max-w-200 xs:max-w-248 lg:max-w-400 col-span-4 md:col-span-3 md:col-start-4 md:pr-20 lg:pr-40" />

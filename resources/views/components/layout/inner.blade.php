@@ -18,7 +18,7 @@
 
     <div class="md:col-span-9 {{ $contentClass ?? '' }}">
 
-      <x-layout.partials.header class="min-h-(--header-height) md:min-h-(--header-height-md) lg:min-h-(--header-height-lg) flex flex-col md:grid md:grid-cols-9 gap-y-30 md:gap-y-0 py-20 lg:pt-40 md:px-20 lg:px-0 {{ $headerClass ?? '' }}">
+      <x-layout.partials.header class="min-h-(--header-height) md:min-h-(--header-height-md) lg:min-h-(--header-height-lg) flex flex-col md:grid md:grid-cols-9 gap-y-30 md:gap-y-0 py-20 lg:pt-40 md:px-20 lg:px-0 -mt-6 lg:-mt-8 xl:-mt-10 {{ $headerClass ?? '' }}">
         
         @if ($title)
           <h1 class="md:hidden font-semibold text-3xl">

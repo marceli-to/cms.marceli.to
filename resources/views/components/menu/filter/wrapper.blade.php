@@ -23,9 +23,9 @@
   x-transition:leave-end="opacity-0"
   class="{{ $class ?? ''}} flex flex-col justify-between">
 
-  <nav class="flex flex-col justify-between gap-y-60">
+  <nav class="flex flex-col justify-between gap-y-40">
     
-    <div class="flex flex-col gap-y-20 md:gap-y-40">
+    <div class="flex flex-col gap-y-20 md:gap-y-24">
 
       <ul class="flex flex-col gap-y-8">
 
@@ -68,7 +68,7 @@
           action="togglePublications" />
       </ul>
 
-      <ul class="flex flex-col gap-y-2">
+      <ul class="flex flex-col gap-y-2 w-full">
         @foreach($availableLocations as $key => $label)
           <x-menu.filter.item
             :title="$label"
@@ -84,7 +84,7 @@
             type="text"
             wire:model.live.debounce.300ms="query"
             placeholder="Suche"
-            class="w-full border-b border-black pb-6 md:pb-8 lg:pb-10 text-sm font-semibold text-md md:text-lg lg:text-xl text-black placeholder:text-md md:placeholder:text-lg lg:placeholder:text-xl placeholder:text-black placeholder:font-semibold focus:outline-none"
+            class="w-full focus:border-b focus:border-black pb-6 md:pb-8 lg:pb-10 text-sm font-semibold text-md md:text-lg lg:text-xl text-black placeholder:text-md md:placeholder:text-lg lg:placeholder:text-xl placeholder:text-black placeholder:font-semibold focus:outline-none"
             @keydown.escape="$wire.clearSearch()" />
           @if(!empty($query))
             <button

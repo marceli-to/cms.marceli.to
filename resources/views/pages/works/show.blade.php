@@ -52,11 +52,13 @@
     </x-work.description>
   @endif
 
-  <div class="md:hidden mb-40">
-    <x-work.info
-      :items="$projectInfo"
-      :header="$header"
-    />
+  <div class="md:grid md:grid-cols-12 lg:hidden mb-40">
+    <div class="md:col-span-9 md:col-start-4">
+      <x-work.info
+        :items="$projectInfo"
+        :header="$header"
+      />
+    </div>
   </div>
 
   <x-work.section title="Grundrisse" />
