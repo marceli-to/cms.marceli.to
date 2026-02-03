@@ -93,10 +93,10 @@
 
   <x-work.section title="Team">
     <x-container.inner class="max-w-prose leading-[1.6] md:leading-[1.35]">
-      <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Boris Brunner</a>,</span> <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Eva Geering</a>,</span>
-      <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Fabian Friedli</a>,</span> <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Iris Bergamaschi</a>,</span>
-      <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">René Breuer</a>,</span> <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Tamas Ozvald</a>,</span>
-      <span><a href="mailto:test@wbp.ch" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Roger Weber</a></span>
+      <span><a href="{{ route('page.about.team') }}#boris-brunner" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Boris Brunner</a>,</span> <span><a href="{{ route('page.about.team') }}#eva-geering" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Eva Geering</a>,</span>
+      <span><a href="{{ route('page.about.team') }}#fabian-friedli" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Fabian Friedli</a>,</span> <span><a href="{{ route('page.about.team') }}#iris-bergamaschi" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Iris Bergamaschi</a>,</span>
+      <span><a href="{{ route('page.about.team') }}#rene-breuer" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">René Breuer</a>,</span> <span><a href="{{ route('page.about.team') }}#tamas-ozvald" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Tamas Ozvald</a>,</span>
+      <span><a href="{{ route('page.about.team') }}#roger-weber" class="underline underline-offset-4 md:underline-offset-6 decoration-1 hover:no-underline">Roger Weber</a></span>
     </x-container.inner>
   </x-work.section>
 

@@ -6,7 +6,7 @@
 
 <x-layout.partials.body>
 
-  <x-layout.partials.header class="flex gap-x-30 lg:gap-x-0 lg:grid lg:grid-cols-12 w-full pt-20 lg:pt-40 px-20 lg:px-0 mb-30 lg:mb-75">
+  <x-layout.partials.header class="flex gap-x-30 lg:gap-x-0 lg:grid lg:grid-cols-12 w-full pt-20 lg:pt-40 px-20 lg:px-0 mb-20 lg:mb-40">
     
     <div class="lg:col-span-3 lg:pl-40">
 
@@ -18,7 +18,7 @@
 
     <div class="lg:col-span-9">
 
-      <x-headings.h1 class="font-semibold leading-[1.35] text-lg md:text-2xl lg:text-5xl">
+      <x-headings.h1 class="font-semibold leading-[1.15] text-lg md:text-2xl lg:text-5xl">
 
         {{ $title }}
 

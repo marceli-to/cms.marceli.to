@@ -31,6 +31,7 @@
                     $isInLastRow3 = $index >= $lastRowStart3;
                 @endphp
                 <div wire:key="member-{{ $member['firstname'] }}-{{ $member['name'] }}"
+                    id="{{ Str::slug($member['firstname'] . ' ' . $member['name']) }}"
                     class="bg-white border-black
                         border-b 
                         md:border-r
