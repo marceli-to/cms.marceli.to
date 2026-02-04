@@ -1,26 +1,28 @@
 /**
  * Webfont Routine
  * Usage:
- * - Book → font-light
- * - Regular → font-normal
- * - Semibold → font-semibold
+ * - Regular → font-normal (400)
+ * - Medium → font-medium (500)
+ * - Semibold → font-semibold (600)
  */
 
 @font-face {
-  font-family: 'Routine';
-  src: url('../fonts/Routine-Book.woff2') format('woff2'), url('../fonts/Routine-Book.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* @font-face {
   font-family: 'Routine';
   src: url('../fonts/Routine-Regular.woff2') format('woff2'), url('../fonts/Routine-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-} */
+}
+
+/* TODO: Add Routine-Medium font files
+@font-face {
+  font-family: 'Routine';
+  src: url('../fonts/Routine-Medium.woff2') format('woff2'), url('../fonts/Routine-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+*/
 
 @font-face {
   font-family: 'Routine';

@@ -13,7 +13,7 @@
         <x-menu.buttons.show class="md:hidden w-32 h-auto fixed top-25 right-20 z-50" />
       </div>
       <div class="md:order-1 md:col-span-4 md:pl-20 lg:pl-40 grid grid-cols-6 md:block">
-        <x-icons.logo.symbol size="lg" class="w-full h-auto col-span-4 col-start-2" />
+        <x-icons.logo.animation class="w-full h-auto col-span-4 col-start-2" />
       </div>
     </div>
 

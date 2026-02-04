@@ -20,3 +20,8 @@ Route::view('/buero/netzwerk', 'pages.about.network')->name('page.about.network'
 Route::view('/buero/vortraege', 'pages.about.talks')->name('page.about.talks');
 Route::view('/buero/jury', 'pages.about.jury')->name('page.about.jury');
 Route::view('/buero/auszeichnungen', 'pages.about.awards')->name('page.about.awards');
+
+// Dashboard (Vue SPA)
+Route::get('/dashboard/{any?}', function () {
+    return view('dashboard.layouts.app');
+})->where('any', '.*')->name('dashboard');
