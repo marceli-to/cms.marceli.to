@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "./fonts.css";
-
+@import "./spacing.css";
 @theme {
   /* Font family */
   --font-sans: 'Routine', sans-serif;
@@ -24,3 +24,17 @@
   --text-md: 1rem;
   --text-lg: 1.5rem;
 }
+
+
+/* Debug for grids */
+.debug-grid {
+  @apply bg-yellow-50/50;
+}
+
+.debug-grid > * {
+  @apply outline outline-1 outline-yellow-500/50;
+}
+
+
+
+
