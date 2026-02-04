@@ -1,0 +1,39 @@
+@theme {
+  --animate-logo-frame-1: logo-frame-1 54s infinite step-end;
+  --animate-logo-frame-2: logo-frame-2 54s infinite step-end;
+  --animate-logo-frame-3: logo-frame-3 54s infinite step-end;
+  --animate-logo-frame-4: logo-frame-4 54s infinite step-end;
+  --animate-logo-frame-5: logo-frame-5 54s infinite step-end;
+  --animate-logo-frame-6: logo-frame-6 54s infinite step-end;
+  --animate-logo-frame-7: logo-frame-7 54s infinite step-end;
+  --animate-logo-frame-8: logo-frame-8 54s infinite step-end;
+  --animate-logo-frame-9: logo-frame-9 54s infinite step-end;
+  --animate-logo-frame-10: logo-frame-10 54s infinite step-end;
+  --animate-logo-frame-11: logo-frame-11 54s infinite step-end;
+  --animate-logo-frame-12: logo-frame-12 54s infinite step-end;
+  --animate-logo-frame-13: logo-frame-13 54s infinite step-end;
+  --animate-logo-frame-14: logo-frame-14 54s infinite step-end;
+  --animate-logo-frame-15: logo-frame-15 54s infinite step-end;
+  --animate-logo-frame-16: logo-frame-16 54s infinite step-end;
+  --animate-logo-frame-17: logo-frame-17 54s infinite step-end;
+  --animate-logo-frame-18: logo-frame-18 54s infinite step-end;
+}
+
+@keyframes logo-frame-1  { 0%      { opacity: 1; } 5.556%  { opacity: 0; } }
+@keyframes logo-frame-2  { 5.556%  { opacity: 1; } 11.111% { opacity: 0; } }
+@keyframes logo-frame-3  { 11.111% { opacity: 1; } 16.667% { opacity: 0; } }
+@keyframes logo-frame-4  { 16.667% { opacity: 1; } 22.222% { opacity: 0; } }
+@keyframes logo-frame-5  { 22.222% { opacity: 1; } 27.778% { opacity: 0; } }
+@keyframes logo-frame-6  { 27.778% { opacity: 1; } 33.333% { opacity: 0; } }
+@keyframes logo-frame-7  { 33.333% { opacity: 1; } 38.889% { opacity: 0; } }
+@keyframes logo-frame-8  { 38.889% { opacity: 1; } 44.444% { opacity: 0; } }
+@keyframes logo-frame-9  { 44.444% { opacity: 1; } 50%     { opacity: 0; } }
+@keyframes logo-frame-10 { 50%     { opacity: 1; } 55.556% { opacity: 0; } }
+@keyframes logo-frame-11 { 55.556% { opacity: 1; } 61.111% { opacity: 0; } }
+@keyframes logo-frame-12 { 61.111% { opacity: 1; } 66.667% { opacity: 0; } }
+@keyframes logo-frame-13 { 66.667% { opacity: 1; } 72.222% { opacity: 0; } }
+@keyframes logo-frame-14 { 72.222% { opacity: 1; } 77.778% { opacity: 0; } }
+@keyframes logo-frame-15 { 77.778% { opacity: 1; } 83.333% { opacity: 0; } }
+@keyframes logo-frame-16 { 83.333% { opacity: 1; } 88.889% { opacity: 0; } }
+@keyframes logo-frame-17 { 88.889% { opacity: 1; } 94.444% { opacity: 0; } }
+@keyframes logo-frame-18 { 94.444% { opacity: 1; } 100%    { opacity: 0; } }
