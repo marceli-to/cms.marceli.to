@@ -23,14 +23,14 @@
       </div>
     </div>
     <div class="md:col-span-3 lg:col-span-2 lg:col-start-10">
-      <a 
-        href=""
+      <a
+        href="{{ route('page.impressum') }}"
         aria-label="Impressum"
         class="no-underline hover:underline decoration-1 underline-offset-4">
         Impressum
       </a>
-      <a 
-        href=""
+      <a
+        href="{{ route('page.datenschutz') }}"
         aria-label="Datenschutz"
         class="block mt-3 no-underline hover:underline decoration-1 underline-offset-4">
         Datenschutz

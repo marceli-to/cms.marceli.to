@@ -21,6 +21,9 @@ Route::view('/buero/vortraege', 'pages.about.talks')->name('page.about.talks');
 Route::view('/buero/jury', 'pages.about.jury')->name('page.about.jury');
 Route::view('/buero/auszeichnungen', 'pages.about.awards')->name('page.about.awards');
 
+Route::view('/impressum', 'pages.misc.imprint')->name('page.impressum');
+Route::view('/datenschutz', 'pages.misc.privacy')->name('page.datenschutz');
+
 // Dashboard (Vue SPA)
 Route::get('/dashboard/{any?}', function () {
     return view('dashboard.layouts.app');
