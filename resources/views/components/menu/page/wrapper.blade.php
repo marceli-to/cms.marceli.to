@@ -113,7 +113,7 @@
       <a 
         href="{{ route('page.landing') }}" 
         title="Startseite"
-        class="w-36 h-auto">
+        class="w-36 h-auto {{ Route::is('page.privacy*') ? 'md:mt-6 lg:mt-88' : '' }}">
         <x-icons.logo.symbols class="w-full h-auto" />
       </a>
     @endif
