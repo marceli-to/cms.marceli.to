@@ -18,7 +18,7 @@
       <a
         href="{{ route('page.works') }}"
         @if($isInternalReferrer) onclick="history.back(); return false;" @endif
-        class="block">
+        class="block mt-4 md:mt-0">
         <x-icons.arrow-left size="lg" class="w-20 h-auto md:w-43" />
       </a>
 
