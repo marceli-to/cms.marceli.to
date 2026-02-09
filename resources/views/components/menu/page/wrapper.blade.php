@@ -15,7 +15,7 @@
 
   <nav class="flex flex-col justify-between gap-y-40">
 
-    <div x-data="{ submenu: {{ Route::is('page.about*') ? 'true' : 'false' }} }" class="flex flex-col gap-y-20 md:gap-y-40">
+    <div x-data="{ submenu: {{ Route::is('page.about*') ? 'true' : 'false' }} }" class="flex flex-col gap-y-20 md:gap-y-24">
 
       <ul class="flex flex-col gap-y-8">
 

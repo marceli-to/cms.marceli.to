@@ -27,7 +27,7 @@
     
     <div class="flex flex-col gap-y-20 md:gap-y-24">
 
-      <ul class="flex flex-col gap-y-6">
+      <ul class="flex flex-col gap-y-8">
 
         <x-menu.page.item
           url="{{ route('page.works') }}"
