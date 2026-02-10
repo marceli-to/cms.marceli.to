@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
-    protected $fillable = [
-        'title',
-        'slug',
-    ];
+	protected $fillable = [
+		'title',
+		'slug',
+	];
 
-    public function projects(): BelongsToMany
-    {
-        return $this->belongsToMany(Project::class);
-    }
+	public function projects(): BelongsToMany
+	{
+		return $this->belongsToMany(Project::class);
+	}
 }

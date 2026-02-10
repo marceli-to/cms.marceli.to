@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProjectAttribute extends Model
 {
-    protected $fillable = [
-        'project_id',
-        'label',
-        'value',
-        'sort_order',
-    ];
+	protected $fillable = [
+		'project_id',
+		'label',
+		'value',
+		'sort_order',
+	];
 
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
+	public function project(): BelongsTo
+	{
+		return $this->belongsTo(Project::class);
+	}
 }
