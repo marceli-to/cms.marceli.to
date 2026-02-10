@@ -14,6 +14,10 @@
 	@apply border-black;
 }
 
+.media-uploader .uppy-DragDrop--isDraggingOver {
+	@apply border-black bg-silver/30;
+}
+
 .media-uploader .uppy-DragDrop-label {
 	@apply text-sm text-gray;
 }
