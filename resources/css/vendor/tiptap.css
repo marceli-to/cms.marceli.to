@@ -1,0 +1,31 @@
+.editor .tiptap {
+	@apply border border-silver !border-t-0 p-8 text-sm leading-normal min-h-[200px] outline-none;
+}
+
+.editor .tiptap:focus {
+	@apply border-black;
+}
+
+.editor .tiptap p {
+	@apply mb-[0.5em];
+}
+
+.editor .tiptap ul {
+	@apply list-disc pl-[1.5em] mb-[0.5em];
+}
+
+.editor .tiptap ol {
+	@apply list-decimal pl-[1.5em] mb-[0.5em];
+}
+
+.editor .tiptap li {
+	@apply mb-[0.25em];
+}
+
+.editor .tiptap a {
+	@apply text-black underline;
+}
+
+.editor .tiptap strong {
+	@apply font-semibold;
+}

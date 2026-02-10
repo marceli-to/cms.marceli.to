@@ -7,6 +7,7 @@ import { useToast } from '../../composables/useToast'
 import MediaUploader from '../../components/media/MediaUploader.vue'
 import MediaGrid from '../../components/media/MediaGrid.vue'
 import MediaEditModal from '../../components/media/MediaEditModal.vue'
+import Editor from '../../components/ui/editor/Editor.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -87,18 +88,18 @@ function onSetTeaser(media) {
 </script>
 
 <template>
-	<div>
-		<div class="flex items-center justify-between mb-20">
+	<div class="grid grid-cols-10 gap-x-20">
+		<div class="col-span-9 flex items-center justify-between mb-20">
 			<h2 class="text-lg font-semibold text-black">
 				{{ isEdit ? 'Edit Post' : 'New Post' }}
 			</h2>
 		</div>
 
-		<div v-if="store.loading" class="text-sm text-gray">
+		<div v-if="store.loading" class="col-span-9 text-sm text-gray">
 			Loading...
 		</div>
 
-		<form v-else class="max-w-600" @submit.prevent="handleSubmit">
+		<form v-else class="col-span-9" @submit.prevent="handleSubmit">
 			<div class="mb-16">
 				<label class="block text-sm font-semibold text-black mb-4">Title</label>
 				<input
@@ -113,11 +114,7 @@ function onSetTeaser(media) {
 
 			<div class="mb-16">
 				<label class="block text-sm font-semibold text-black mb-4">Content</label>
-				<textarea
-					v-model="form.content"
-					rows="8"
-					class="w-full border border-silver px-8 py-8 text-sm text-black focus:outline-none focus:border-black"
-				></textarea>
+				<Editor v-model="form.content" />
 				<p v-if="store.errors.content" class="text-sm text-red mt-4">
 					{{ store.errors.content[0] }}
 				</p>
