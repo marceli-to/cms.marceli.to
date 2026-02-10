@@ -76,9 +76,8 @@ const spacings = [
 </script>
 
 <template>
-  <div class="min-h-screen bg-white">
-    <div class="max-w-6xl mx-auto p-32">
-      <h1 class="text-lg font-semibold text-black mb-48">Component Library</h1>
+  <div class="pr-20 pt-20">
+    <div>
 
       <!-- Colors -->
       <section class="mb-64">
@@ -350,13 +349,13 @@ const spacings = [
     </div>
 
     <!-- Layout -->
-    <h2 class="text-md font-semibold text-black mt-64 mb-16 ml-20">Layout</h2>
-    <div>
+    <h2 class="text-md font-semibold text-black mt-64 mb-16 ml-20 hidden">Layout</h2>
+    <div class="hidden">
       <div class="min-h-screen">
 
         <header class="bg-white min-h-100 sticky top-0 left-0">
           <div class="w-full h-20"></div>
-          <div class="min-h-80 grid grid-cols-12 gap-x-20">
+          <div class="min-h-80 grid grid-cols-12">
 
             <div class="col-span-2 pl-20 border-r border-black">
 
@@ -369,7 +368,7 @@ const spacings = [
 
             </div>
 
-            <div class="col-span-9">
+            <div class="col-span-10">
               <div class="flex justify-between">
 
                 <h1 class="text-lg font-semibold text-black leading-none">
@@ -399,13 +398,10 @@ const spacings = [
               </div>
             </div>
 
-            <div class="col-span-1">
-
-            </div>
           </div>
         </header>
 
-        <div class="bg-snow grid grid-cols-12 gap-x-20">
+        <div class="bg-snow grid grid-cols-12">
           <sidebar class="col-span-2 bg-snow pl-20 border-r border-black min-h-[150vh]">
 
           </sidebar>
