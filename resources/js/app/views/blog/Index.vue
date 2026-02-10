@@ -2,9 +2,11 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useBlogStore } from '../../stores/blog'
+import { useToast } from '../../composables/useToast'
 
 const router = useRouter()
 const store = useBlogStore()
+const toast = useToast()
 
 onMounted(() => {
 	store.fetchPosts()
@@ -13,6 +15,7 @@ onMounted(() => {
 async function handleDelete(post) {
 	if (!confirm(`Delete "${post.title}"?`)) return
 	await store.deletePost(post.id)
+	toast.success('Post deleted')
 }
 </script>
 

@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useBlogStore } from '../../stores/blog'
 import { useMediaStore } from '../../stores/media'
+import { useToast } from '../../composables/useToast'
 import MediaUploader from '../../components/media/MediaUploader.vue'
 import MediaGrid from '../../components/media/MediaGrid.vue'
 import MediaEditModal from '../../components/media/MediaEditModal.vue'
@@ -11,6 +12,7 @@ const route = useRoute()
 const router = useRouter()
 const store = useBlogStore()
 const mediaStore = useMediaStore()
+const toast = useToast()
 
 const isEdit = computed(() => !!route.params.id)
 const editingMedia = ref(null)
@@ -49,7 +51,10 @@ async function handleSubmit() {
 
 	const success = await store.savePost(form.value, isEdit.value ? route.params.id : null, tempMedia)
 	if (success) {
+		toast.success(isEdit.value ? 'Post updated' : 'Post created')
 		router.push({ name: 'blog.index' })
+	} else if (Object.keys(store.errors).length) {
+		toast.error('Please check the form for errors')
 	}
 }
 
