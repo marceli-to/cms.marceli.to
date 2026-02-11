@@ -1,6 +1,6 @@
 # cms.marceli.to
 
-A lightweight, custom-built CMS powered by Laravel 11, Vue 3, and Tailwind CSS.
+A lightweight, custom-built CMS powered by Laravel 12, Vue 3, and Tailwind CSS.
 
 ## Stack
 
