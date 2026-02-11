@@ -24,7 +24,7 @@ const emit = defineEmits(['confirm', 'cancel'])
 					{{ cancelLabel }}
 				</FormButton>
 				<FormButton
-					:class="destructive ? '!bg-red-500 hover:!bg-red-600 active:!bg-red-700' : ''"
+					:class="destructive ? '!bg-red-500 !border-red-500 hover:!bg-red-600 hover:!border-red-600 active:!bg-red-700 active:!border-red-700' : ''"
 					@click="emit('confirm')"
 				>
 					{{ confirmLabel }}

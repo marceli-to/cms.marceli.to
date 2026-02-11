@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\MediaController;
 
 Route::prefix('dashboard')
 	->middleware(['web', 'auth'])
 	->group(function () {
+
+		Route::get('/', [DashboardController::class, 'index']);
 
 		Route::controller(PostController::class)
 			->prefix('blog')
