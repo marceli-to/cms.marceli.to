@@ -1,5 +1,7 @@
 # cms.marceli.to
 
+[![Tests](https://github.com/marceli-to/cms.marceli.to/actions/workflows/tests.yml/badge.svg)](https://github.com/marceli-to/cms.marceli.to/actions/workflows/tests.yml)
+
 A lightweight, custom-built CMS powered by Laravel 12, Vue 3, and Tailwind CSS.
 
 ## Stack
